@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "basicClassification.h"
-#include "advancedClassificationLoop.h"
-#include "advancedClassificationRecursion.h"
+#include "NumClass.h"
 
 int isPrime(int n);
 
