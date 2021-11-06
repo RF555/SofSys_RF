@@ -42,7 +42,6 @@ int isStrong(int n){
     }
     if (sumOfFact==n)
     {
-        /* code */
         return 1;
     }else{
         return 0;
