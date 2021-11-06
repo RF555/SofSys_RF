@@ -31,8 +31,15 @@ int isPrime(int n){
 1! + 4! + 5! = 145
 */
 int isStrong(int n){
-    
-
+    int sumOfFact=0;
+    int N=n;
+    while(N!=0){
+        int NmodTen=N%10;
+        N=N/10;
+        int factOfMod=factorial(NmodTen);
+        sumOfFact=sumOfFact+factOfMod;
+    }
+    return sumOfFact;
 }
 
 int factorial(int n);{
