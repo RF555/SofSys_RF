@@ -3,7 +3,8 @@
 int factorial(int n);
 
 /* will return if a number is prime*/
-int isPrime(int n){
+int int isPrime(int n){
+    int ans=1;
     if(n==1)
     {
         return 1; //???? is 1 prime??
@@ -14,19 +15,18 @@ int isPrime(int n){
     }
     else
     {
-        int sqr=sqrt(n);
-        int i=0;
         int ans=1;
-        while (i<sqr)
-        // while (i<n)
+        for(int i=2; i<=(n/2)+1; i++)        
         {
             if(n%i==0){
-                return 0;
+                ans = 0;
+                break;
             }
         }
         return ans;
     }    
 }
+
 /*Strong number is a special number whose sum of the factorial of digits is equal to the original number. For Example: 145 is strong number
 1! + 4! + 5! = 145
 */
