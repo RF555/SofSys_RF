@@ -30,6 +30,7 @@ int int isPrime(int n){
 /*Strong number is a special number whose sum of the factorial of digits is equal to the original number. For Example: 145 is strong number
 1! + 4! + 5! = 145
 */
+
 int isStrong(int n){
     int sumOfFact=0;
     int N=n;
@@ -39,7 +40,14 @@ int isStrong(int n){
         int factOfMod=factorial(NmodTen);
         sumOfFact=sumOfFact+factOfMod;
     }
-    return sumOfFact;
+    if (sumOfFact==n)
+    {
+        /* code */
+        return 1;
+    }else{
+        return 0;
+    }
+
 }
 
 int factorial(int n){
