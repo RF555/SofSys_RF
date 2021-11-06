@@ -5,5 +5,9 @@
     int isArmstrong(int);
     int isPalindrome(int);
 
+    // functions prototype for a function exported by library:
+    int isPrime(int n);
+    int isStrong(int n);
+
 
     #endif

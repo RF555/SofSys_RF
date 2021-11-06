@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <math.h>
-#include "basicClassification.h"
+#include "NumClass.h"
 
 /* will return if a number is prime*/
 int isPrime(int n){

@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include "advancedClassificationRecursion.h"
+#include "NumClass.h"
 
 //Recursive
 
