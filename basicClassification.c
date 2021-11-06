@@ -1,5 +1,7 @@
 #include "NumClass.h"
 
+int factorial(int n);
+
 /* will return if a number is prime*/
 int isPrime(int n){
     if(n==1)
@@ -12,11 +14,11 @@ int isPrime(int n){
     }
     else
     {
-        // int sqr=sqrt(n);
+        int sqr=sqrt(n);
         int i=0;
         int ans=1;
-        // while (i<sqr)
-        while (i<n)
+        while (i<sqr)
+        // while (i<n)
         {
             if(n%i==0){
                 return 0;
@@ -31,4 +33,17 @@ int isPrime(int n){
 int isStrong(int n){
     
 
+}
+
+int factorial(int n);{
+    if(n==0 or n==1){
+        return 1;
+    }else {
+        int fact=1;
+        while(n!=1){
+            fact=fact*n;
+            n--;
+        }
+        return fact;
+    }
 }
