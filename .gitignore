@@ -50,3 +50,13 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+#Ex1 file
+maindloop
+maindrec
+mains
+loopd
+recursived
+recursives
+loops
