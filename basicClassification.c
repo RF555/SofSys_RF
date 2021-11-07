@@ -4,7 +4,6 @@ int factorial(int n);
 
 /* will return if a number is prime*/
 int isPrime(int n){
-    int ans=1;
     if(n==1)
     {
         return 1; //???? is 1 prime??
