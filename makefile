@@ -7,7 +7,7 @@ ADVLOOP=advancedClassificationLoop.o
 BASICCLASS=basicClassification.o
 FLAGS= -Wall -g
 
-all: libclassloops.a libclassrec.a libclassrec.so maindloop maindrec mains
+all: libclassloops.a libclassrec.a libclassrec.so maindloop maindrec mains loopd recursived recursives loops
 maindloop:
 
 maindrec:
@@ -15,6 +15,13 @@ maindrec:
 mains:
 
 loops: 
+
+loopd:
+
+recursived:
+
+recursives:
+
 
 libclassloops.a: $(OBJECT_MAIN) $(BASICCLASS) $(ADVLOOP)
 	???
