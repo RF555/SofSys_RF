@@ -36,5 +36,7 @@ basicClassification.o: basicClassification.c NumClass.h
 main.o: main.c NumClass.h
 	$(CC) $(FLAGS) -c main.c
 
+.PHONY: clean all
 
 clean:
+	rm -f *.o *.a *.so maindloop maindrec mains
