@@ -3,7 +3,7 @@
 int factorial(int n);
 
 /* will return if a number is prime*/
-int int isPrime(int n){
+int isPrime(int n){
     int ans=1;
     if(n==1)
     {
