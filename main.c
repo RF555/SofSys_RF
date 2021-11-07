@@ -2,8 +2,6 @@
 #include <math.h>
 #include "NumClass.h"
 
-int isPrime(int n);
-
 
 int main(){
     int x,y=0;
