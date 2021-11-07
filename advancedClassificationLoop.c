@@ -29,7 +29,34 @@ int isArmstrong(int n){
 
 /* will return if a number is a palindrome */
 int isPalindrome(int n){
-
+    int count=countDigitNum(n);
+    char st[count];
+    sprintf(st,"%d",n);
+    int i=0, j=count-1, ans=1;
+    if(count%2==0){ // if count is even -> no middle digit
+        while (i<j){
+            if(st[i]!=st[j]){
+                ans=0;
+                break;
+            }else{
+                ans=1;
+            }
+            i++;
+            j--;
+        }
+    }else{
+        while (i<=j){
+            if(st[i]!=st[j]){
+                ans=0;
+                break;
+            }else{
+                ans=1;
+            }
+        i++;
+        j--;
+        }
+    }
+    return ans;
 }
 
 int myPow(int a, int b){
