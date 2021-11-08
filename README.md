@@ -1,7 +1,8 @@
 # SofSys_Ex1
 Software Systems Ex1 repository
-# 1
+
 save .txt commands:
+# 1
 echo 1 > mains.txt
 echo 10000 >> mains.txt
 echo 1 > maindloop.txt
@@ -15,9 +16,9 @@ echo 10000 >> maindrec.txt
  # 2
 echo 15 >> mains.txt
 echo 15 >> mains.txt
-echo 15 > maindloop.txt
 echo 15 >> maindloop.txt
-echo 15 > maindrec.txt
+echo 15 >> maindloop.txt
+echo 15 >> maindrec.txt
 echo 15 >> maindrec.txt
 
 ./mains >> mains.txt
