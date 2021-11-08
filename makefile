@@ -71,4 +71,4 @@ main.o: main.c NumClass.h
 .PHONY: clean all
 
 clean:
-	rm -f *.o *.a *.so maindloop maindrec mains loopd recursived recursives loops
+	rm -f *.o *.a *.so maindloop maindrec mains loopd recursived recursives loops *.txt
