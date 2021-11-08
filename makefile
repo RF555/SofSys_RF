@@ -6,33 +6,40 @@ FLAGS= -Wall -g
 
 all: maindloop maindrec mains loopd recursived recursives loops
 
-mains: libclassrec.a
+# mains: libclassrec.a
 
-maindloop: libclassloops.so
+# maindloop: libclassloops.so
 
-maindrec: libclassrec.so
+# maindrec: libclassrec.so
 
-# maindloop: main.o libclassloops.so
-# 	$(CC) $(FLAGS) -o maindloop main.o ./libclassloops.so
+maindloop: main.o libclassloops.so
+	$(CC) $(FLAGS) -o maindloop main.o ./libclassloops.so
 
-# maindrec: main.o libclassrec.so
-# 	$(CC) $(FLAGS) -o maindrec main.o ./libclassrec.so
+maindrec: main.o libclassrec.so
+	$(CC) $(FLAGS) -o maindrec main.o ./libclassrec.so
 
-# mains: main.o libclassrec.a
-# 	$(CC) $(FLAGS) -o mains main.o libclassrec.a
+mains: main.o libclassrec.a
+	$(CC) $(FLAGS) -o mains main.o libclassrec.a
 
+loopd: libclassloops.so
 
-loopd: main.o libclassloops.so
-	$(CC) $(FLAGS) -o loopd main.o ./libclassloops.so
+loops: libclassloops.a
 
-loops: main.o libclassloops.a
-	$(CC) $(FLAGS) -o loops main.o libclassloops.a
+recursived: libclassrec.so
 
-recursived: main.o libclassrec.so
-	$(CC) $(FLAGS) -o recursived main.o ./libclassrec.so
+recursives: libclassrec.a
 
-recursives: main.o libclassrec.a
-	$(CC) $(FLAGS) -o recursives main.o libclassrec.a
+# loopd: main.o libclassloops.so
+# 	$(CC) $(FLAGS) -o loopd main.o ./libclassloops.so
+
+# loops: main.o libclassloops.a
+# 	$(CC) $(FLAGS) -o loops main.o libclassloops.a
+
+# recursived: main.o libclassrec.so
+# 	$(CC) $(FLAGS) -o recursived main.o ./libclassrec.so
+
+# recursives: main.o libclassrec.a
+# 	$(CC) $(FLAGS) -o recursives main.o libclassrec.a
 
 libclassrec.a: basicClassification.o advancedClassificationRecursion.o
 	$(AR) -rcs libclassrec.a -o basicClassification.o advancedClassificationRecursion.o
