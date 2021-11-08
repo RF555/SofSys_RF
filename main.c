@@ -18,7 +18,10 @@ int main(){
     int armstrongs[max-min];
     int strongs[max-min];
     int palindromes[max-min];
-    int iPrime=0,iArmstrong=0,iStrong=0,iPalindrome=0;
+    int iPrime=0;
+    int iArmstrong=0;
+    int iStrong=0;
+    int iPalindrome=0;
     for (int i = min; i <= max; i++){
         if(isPrime(i)==1){
             primes[iPrime]=i;
@@ -38,19 +41,19 @@ int main(){
         }
     }
     printf("The Armstrong numbers are:");
-    for(int i=0;i<=iArmstrong;i++){
+    for(int i=0;i<iArmstrong;i++){
         printf(" %d", armstrongs[i]);
     }
     printf("\nThe Palindromes are:");
-    for(int i=0;i<=iPalindrome;i++){
+    for(int i=0;i<iPalindrome;i++){
         printf(" %d", palindromes[i]);
     }
     printf("\nThe Prime numbers are:");
-    for(int i=0;i<=iPrime;i++){
+    for(int i=0;i<iPrime;i++){
         printf(" %d", primes[i]);
     }
     printf("\nThe Strong numbers are:");
-    for(int i=0;i<=iStrong;i++){
+    for(int i=0;i<iStrong;i++){
         printf(" %d", strongs[i]);
     }
     printf("\n");
