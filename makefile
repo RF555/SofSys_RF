@@ -33,7 +33,7 @@ libclassrec.so: basicClassification.o advancedClassificationRecursion.o
 	$(CC) -shared -o libclassrec.so basicClassification.o advancedClassificationRecursion.o
 
 libclassloops.a: basicClassification.o advancedClassificationLoop.o
-	$(AR) -rcs  -o libclassloops.so basicClassification.o advancedClassificationLoop.o
+	$(AR) -rcs  -o libclassloops.a basicClassification.o advancedClassificationLoop.o
 
 libclassloops.so: basicClassification.o advancedClassificationLoop.o
 	$(CC) -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o
