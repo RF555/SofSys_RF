@@ -9,6 +9,7 @@ For Example: 407 = 43 + 03 + 73 = 64 + 0 + 343 = 407
 int isArmstroenRec(int n, int pow);
 int countDigitNum(int n);
 int myPow(int a, int b);
+int reverse(int n,int rev);
 
 int myPow(int a, int b);
 
@@ -35,7 +36,12 @@ int isArmstrongRec(int num, int pow){
 
 /* will return if a number is a palindrome */
 int isPalindrome(int n){
-
+    int rev= reverse(n,0);
+    if(rev==n){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 int myPow(int a, int b){
@@ -52,4 +58,14 @@ int countDigitNum(int n){
             i=i/10;
         }
     return count;
+}
+
+int reverse(int n,int rev){
+    if(n!=0){
+        int modTen=n%10;
+        rev=rev*10+modTen;
+        return reverse(n/10, rev);
+    }else{
+        return rev;
+    }
 }
