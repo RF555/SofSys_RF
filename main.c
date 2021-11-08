@@ -53,4 +53,5 @@ int main(){
     for(int i=0;i<=iStrong;i++){
         printf(" %d", strongs[i]);
     }
+    return 0;
 }
