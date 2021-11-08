@@ -6,7 +6,7 @@
 An Armstrong number is an n-digit number that is equal to the sum of the nth powers of its digits.
 For Example: 407 = 43 + 03 + 73 = 64 + 0 + 343 = 407
 */
-int isArmstroenRec(int n, int pow);
+int isArmstrongRec(int n, int pow);
 int countDigitNum(int n);
 int myPow(int a, int b);
 int reverse(int n,int rev);
