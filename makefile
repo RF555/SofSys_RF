@@ -7,13 +7,13 @@ FLAGS= -Wall -g
 all: maindloop maindrec mains loopd recursived recursives loops
 
 maindloop: main.o libclassloops.so
-	$(CC) $(FLAGS) -o maindloop main.o ./libclassloops.so
+	$(CC) $(FLAGS) -o maindloop main.o ./libclassloops.so -lm
 
 maindrec: main.o libclassrec.so
-	$(CC) $(FLAGS) -o maindrec main.o ./libclassrec.so
+	$(CC) $(FLAGS) -o maindrec main.o ./libclassrec.so -lm
 
 mains: main.o libclassrec.a
-	$(CC) $(FLAGS) -o mains main.o libclassrec.a
+	$(CC) $(FLAGS) -o mains main.o libclassrec.a -lm
 
 loopd: libclassloops.so
 
@@ -35,17 +35,14 @@ libclassloops.a: basicClassification.o advancedClassificationLoop.o
 libclassloops.so: basicClassification.o advancedClassificationLoop.o
 	$(CC) -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o
 
-
 advancedClassificationLoop.o: advancedClassificationLoop.c NumClass.h
 	$(CC) $(FLAGS) -c advancedClassificationLoop.c
 
 advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 		$(CC) $(FLAGS) -c advancedClassificationRecursion.c
 
-
 basicClassification.o: basicClassification.c NumClass.h 
 	$(CC) $(FLAGS) -c basicClassification.c
-
 
 main.o: main.c NumClass.h
 	$(CC) $(FLAGS) -c main.c

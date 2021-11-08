@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <math.h>
 #include "NumClass.h"
 
 //Loop
-int myPow(int a, int b);
+// int myPow(int a, int b);
 int countDigitNum(int n);
 
 /* will return if a number is Armstrong number
@@ -18,7 +19,8 @@ int isArmstrong(int n){
 
         for (int N = n; N != 0 ; N=N/10){
             int mod=N%10;
-            sum=sum+myPow(mod,count);
+            // sum=sum+myPow(mod,count);
+            sum=sum+pow(mod,count);
         }        
         if(sum==n){
             return 1;
@@ -60,13 +62,13 @@ int isPalindrome(int n){
     return ans;
 }
 
-int myPow(int a, int b){
-    int Pow=1;
-    for (int i = 0; i < b; i++){
-        Pow=Pow*a;
-    }
-    return Pow;
-}
+// int myPow(int a, int b){
+//     int Pow=1;
+//     for (int i = 0; i < b; i++){
+//         Pow=Pow*a;
+//     }
+//     return Pow;
+// }
 
 int countDigitNum(int n){
     int count=0;

@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <math.h>
 #include "NumClass.h"
 
 //Recursive
@@ -8,7 +10,7 @@ For Example: 407 = 43 + 03 + 73 = 64 + 0 + 343 = 407
 */
 int isArmstrongRec(int n, int pow);
 int countDigitNum(int n);
-int myPow(int a, int b);
+// int myPow(int a, int b);
 int reverse(int n,int rev);
 
 int myPow(int a, int b);
@@ -23,11 +25,12 @@ int isArmstrong(int n){
     }
 }
 
-int isArmstrongRec(int num, int pow){
+int isArmstrongRec(int num, int Pow){
     int modN,sum=0;
     if(num>0){
         modN=num%10;
-        sum=sum+myPow(modN,pow)+isArmstrongRec((num/10),pow);
+        // sum=sum+myPow(modN,Pow)+isArmstrongRec((num/10),Pow);
+        sum=sum+pow(modN,Pow)+isArmstrongRec((num/10),Pow);
         return sum;
     }else{
         return 0;
@@ -44,13 +47,13 @@ int isPalindrome(int n){
     }
 }
 
-int myPow(int a, int b){
-    int Pow=1;
-    for (int i = 0; i < b; i++){
-        Pow=Pow*a;
-    }
-    return Pow;
-}
+// int myPow(int a, int b){
+//     int Pow=1;
+//     for (int i = 0; i < b; i++){
+//         Pow=Pow*a;
+//     }
+//     return Pow;
+// }
 
 int countDigitNum(int n){
     int count=0;
