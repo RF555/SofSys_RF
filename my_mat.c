@@ -19,7 +19,7 @@ int generate_mat_from_input(int mat[N][N]);
 int path_exists(int i, int j, int mat[N][N]);
 
 // FUNCTION C:
-int floydWarshall(int mat[][N]);
+int floydWarshall(int i, int j, int mat[][N]);
 
 // Initialize and generate a matrix from input
 int func_A(int mat[N][N])
@@ -120,7 +120,7 @@ int path_exists(int i, int j, int mat[N][N])
 //     return p;
 // }
 
-int floydWarshall(int mat[][N])
+int floydWarshall(int i, int j, int mat[][N])
 {
     int min_dist[N][N]; //initialize min_dist as a copy of mat
     for (int i = Z; i < N; ++i)
