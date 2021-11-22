@@ -53,11 +53,15 @@ dkms.conf
 
 
 #Ex1 file
-maindloop
-maindrec
-mains
-loopd
-recursived
-recursives
-loops
+# maindloop
+# maindrec
+# mains
+# loopd
+# recursived
+# recursives
+# loops
+
+#Ex2 file
+
+
 *.txt
