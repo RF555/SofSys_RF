@@ -3,7 +3,8 @@
 
 #define N 10
 #define T 2
-#define MAX_NUM 2147483647;
+#define DIS 2147483647;
+#define Z 0;
 #define MIN_NUM -2147483648;
 
 void floydWarshall (int graph[][N]);
