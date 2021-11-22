@@ -19,6 +19,11 @@ void init_mat(int mat[N][N]){
     }
 }
 
+int return_init_mat(mat[N][N]){
+    int *p; // initiate pointer
+    return
+}
+
 int main(){
     int mat[N][N];
     init_mat(mat);
