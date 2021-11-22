@@ -8,7 +8,8 @@
 #define MAX_NUM 2147483648
 #define MIN_NUM -2147483648
 
-int main(){
+int main()
+{
     int mat[N][N];
     init_mat(mat);
 
