@@ -44,41 +44,25 @@ int func_A(int mat[N][N], int path_mat[N][N])
 {
     init_mat(mat, path_mat);
     generate_mat_from_input(mat, path_mat);
+    return 0;
 }
 
 // Prints "True" if there's a path from i to j, else- prints "False"
 int func_B(int mat[N][N], int path_mat[N][N])
 {
     int path_mat_ij = MIN_NUM;
-    printf("Enter i:\n");
-    int i = MIN_NUM;
-    scanf("%d\n", i);
-    printf("Enter j:\n");
-    int j = MIN_NUM;
-    scanf("%d\n", j);
+    int i = scan_i();
+    int j = scan_j();
     path_mat_ij = path_exists(i, j, mat);
     bool_Z_is_false(path_mat_ij);
-    // if (bool == TRUE)
-    // {
-    //     printf("True");
-    // }
-    // else
-    // {
-    //     printf("False");
-    // }
     return 0;
 }
 
 // Prints "True" if there's a path from i to j, else- prints "False"
 int func_C(int mat[N][N], int path_mat[N][N])
 {
-    printf("Enter i:\n");
-    int i = MIN_NUM;
-    // scanf("%d\n", i);
-    // printf("Enter j:\n");
-    int j = MIN_NUM;
-    // scanf("%d\n", j);
-    scanf(i, j);
+    int i = scan_i();
+    int j = scan_j();
     int path = floydWarshall(i, j, mat);
     if (path == 0)
     {
@@ -87,7 +71,7 @@ int func_C(int mat[N][N], int path_mat[N][N])
     }
     else
     {
-        printf("%d", path);
+        printf("%d\n", path);
     }
 
     return 0;
@@ -131,8 +115,8 @@ int generate_mat_from_input(int mat[N][N], int path_mat[N][N])
         for (int j = Z; j < N; j++)
         {
             int w;
-            printf("Enter value of mat[%d][%d]", i, j);
-            scanf("%d", w);
+            printf("Enter value of mat[%d][%d]\n", i, j);
+            scanf("%d", &w);
             if (mat[i][j] == ERR)
             {
                 mat[i][j] = w;
@@ -154,15 +138,15 @@ int bool_Z_is_false(int val)
 {
     if (val < Z)
     {
-        printf("ERROR!!!");
+        printf("ERROR!!!\n");
     }
     else if (val == Z)
     {
-        printf("False");
+        printf("False\n");
     }
     else
     {
-        printf("True");
+        printf("True\n");
     }
     return 0;
 }
@@ -170,12 +154,6 @@ int bool_Z_is_false(int val)
 // if B OR C were alredy called, all we need is to check path_mat[i][j]
 int bool_B(int path_mat[N][N])
 {
-    // printf("Enter i:\n");
-    // int i = scan_i();
-    // scanf("%d\n", i);
-    // printf("Enter j:\n");
-    // int j = MIN_NUM;
-    // scanf("%d\n", j);
     int i = scan_i();
     int j = scan_j();
     bool_Z_is_false(path_mat[i][j]);
@@ -202,29 +180,24 @@ int path_exists(int i, int j, int mat[N][N])
 
 int prev_C(int path_mat[N][N])
 {
-    // printf("Enter i:\n");
-    // int i = MIN_NUM;
-    // scanf("%d\n", i);
-    // printf("Enter j:\n");
-    // int j = MIN_NUM;
-    // scanf("%d\n", j);
     int i = scan_i();
     int j = scan_j();
-    printf("%d", path_mat[i][j]);
+    printf("%d\n", path_mat[i][j]);
     return 0;
 }
 
 int floydWarshall(int i, int j, int mat[][N])
 {
-    int min_dist[N][N]; //initialize min_dist as a copy of mat
-    for (int i = Z; i < N; ++i)
-    {
-        for (int j = i; j < N; ++j)
-        {
-            min_dist[i][j] = mat[i][j];
-            min_dist[j][i] = mat[j][i];
-        }
-    }
+    // int min_dist[N][N]; //initialize min_dist as a copy of mat
+    // for (int i = Z; i < N; ++i)
+    // {
+    //     for (int j = i; j < N; ++j)
+    //     {
+    //         min_dist[i][j] = mat[i][j];
+    //         min_dist[j][i] = mat[j][i];
+    //     }
+    // }
+
     /*
     Continue:
     create a matrix 10X10 of current shortest PATH (NOT edge) from i to j
@@ -237,7 +210,7 @@ int scan_i()
 {
     printf("Enter i:\n");
     int i = MIN_NUM;
-    scanf("%d\n", i);
+    scanf("%d\n", &i);
     return i;
 }
 
@@ -245,6 +218,6 @@ int scan_j()
 {
     printf("Enter j:\n");
     int j = MIN_NUM;
-    scanf("%d\n", j);
+    scanf("%d\n", &j);
     return j;
 }

@@ -16,24 +16,25 @@ int main()
 {
     int mat[N][N], path_mat[N][N];
     init_mat(mat, path_mat);
-    char select = 'E';
+    char select[1] = "E";
     int firstA = Z;
     int firstB = Z;
     int firstC = Z;
-    while (select != 'D')
+    while (select[0] != 'D')
     {
         printf("Enter A, B, C or D:\n");
         scanf("%c", select);
-        if (select == 'A')
+        // char select = sel;
+        if (select[0] == 'A')
         {
-            // Function A
-            func_A(mat, path_mat);
             firstA = INIT;
             firstB = INIT;
             firstC = INIT;
+            // Function A
+            func_A(mat, path_mat);
         }
         // Function B
-        else if (select == 'B')
+        else if (select[0] == 'B')
         {
             if (firstA == Z)
             {
@@ -45,12 +46,13 @@ int main()
             }
             else
             {
-                func_B(mat, path_mat);
                 ++firstB;
+                func_B(mat, path_mat);
             }
+            select[1] = 'E';
         }
         // Function C
-        else if (select == 'C')
+        else if (select[0] == 'C')
         {
             if (firstA == Z)
             {
@@ -66,11 +68,13 @@ int main()
                 ++firstC;
                 func_C(mat, path_mat);
             }
+            select[1] = 'E';
         }
-        else if (select == 'D')
+        else if (select[0] == 'D')
         {
             break;
         }
+        select[1] = 'E';
     }
     printf("Bye-Bye!\n");
     return 0;
