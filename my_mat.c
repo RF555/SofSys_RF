@@ -36,6 +36,9 @@ int path_exists(int i, int j, int mat[N][N]);
 int prev_C(int path_mat[N][N]);
 int floydWarshall(int i, int j, int mat[][N]);
 
+int scan_i();
+int scan_j();
+
 // Initialize and generate a matrix from input
 int func_A(int mat[N][N], int path_mat[N][N])
 {
@@ -71,10 +74,11 @@ int func_C(int mat[N][N], int path_mat[N][N])
 {
     printf("Enter i:\n");
     int i = MIN_NUM;
-    scanf("%d\n", i);
-    printf("Enter j:\n");
+    // scanf("%d\n", i);
+    // printf("Enter j:\n");
     int j = MIN_NUM;
-    scanf("%d\n", j);
+    // scanf("%d\n", j);
+    scanf(i, j);
     int path = floydWarshall(i, j, mat);
     if (path == 0)
     {
@@ -166,13 +170,14 @@ int bool_Z_is_false(int val)
 // if B OR C were alredy called, all we need is to check path_mat[i][j]
 int bool_B(int path_mat[N][N])
 {
-    int bool = MIN_NUM;
-    printf("Enter i:\n");
-    int i = MIN_NUM;
-    scanf("%d\n", i);
-    printf("Enter j:\n");
-    int j = MIN_NUM;
-    scanf("%d\n", j);
+    // printf("Enter i:\n");
+    // int i = scan_i();
+    // scanf("%d\n", i);
+    // printf("Enter j:\n");
+    // int j = MIN_NUM;
+    // scanf("%d\n", j);
+    int i = scan_i();
+    int j = scan_j();
     bool_Z_is_false(path_mat[i][j]);
     return 0;
 }
@@ -197,13 +202,14 @@ int path_exists(int i, int j, int mat[N][N])
 
 int prev_C(int path_mat[N][N])
 {
-    int bool = MIN_NUM;
-    printf("Enter i:\n");
-    int i = MIN_NUM;
-    scanf("%d\n", i);
-    printf("Enter j:\n");
-    int j = MIN_NUM;
-    scanf("%d\n", j);
+    // printf("Enter i:\n");
+    // int i = MIN_NUM;
+    // scanf("%d\n", i);
+    // printf("Enter j:\n");
+    // int j = MIN_NUM;
+    // scanf("%d\n", j);
+    int i = scan_i();
+    int j = scan_j();
     printf("%d", path_mat[i][j]);
     return 0;
 }
@@ -225,4 +231,20 @@ int floydWarshall(int i, int j, int mat[][N])
     
     */
     return 0;
+}
+
+int scan_i()
+{
+    printf("Enter i:\n");
+    int i = MIN_NUM;
+    scanf("%d\n", i);
+    return i;
+}
+
+int scan_j()
+{
+    printf("Enter j:\n");
+    int j = MIN_NUM;
+    scanf("%d\n", j);
+    return j;
 }
