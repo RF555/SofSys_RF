@@ -46,22 +46,23 @@ int func_A(int mat[N][N], int path_mat[N][N])
 // Prints "True" if there's a path from i to j, else- prints "False"
 int func_B(int mat[N][N], int path_mat[N][N])
 {
-    int bool = MIN_NUM;
+    int path_mat_ij = MIN_NUM;
     printf("Enter i:\n");
     int i = MIN_NUM;
     scanf("%d\n", i);
     printf("Enter j:\n");
     int j = MIN_NUM;
     scanf("%d\n", j);
-    bool = path_exists(i, j, mat);
-    if (bool == TRUE)
-    {
-        printf("True");
-    }
-    else
-    {
-        printf("False");
-    }
+    path_mat_ij = path_exists(i, j, mat);
+    bool_Z_is_false(path_mat_ij);
+    // if (bool == TRUE)
+    // {
+    //     printf("True");
+    // }
+    // else
+    // {
+    //     printf("False");
+    // }
     return 0;
 }
 
@@ -176,14 +177,16 @@ int bool_B(int path_mat[N][N])
     return 0;
 }
 
+// returns the value of the first path generated from i to j
 int path_exists(int i, int j, int mat[N][N])
 {
+    int path_ij = MIN_NUM;
     /*
     search if there is a path from i to j,
     if so- return TRUE(=1)
     else- return FALSE(=0)
     */
-    return 0;
+    return path_ij;
 }
 
 // int return_init_mat_0_0(int mat[N][N])
