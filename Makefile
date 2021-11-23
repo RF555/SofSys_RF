@@ -1,29 +1,35 @@
 CC = gcc
-# CFLAGS = -fPIC -Wall -Wextra -O2 -g  # C flags
-CFLAGS =  -Wall -g
-# LDFLAGS = -shared   # linking flags
-# RM = rm -f   # rm command
-AR=ar
-MY_LIB = libmat.so
+FLAGS = -Wall -g
+MY_DYNAMIC_LIB = libmat.so
+MY_STATIC_LIB = libmat.a
+AR = ar -rcs
+OBJECT_LIB = libmat.o
+OBJECT_MAIN = main.o
 
+all: $(MY_DYNAMIC_LIB) connections
 
-SRCS = main.c src1.c src2.c  # source files
-# OBJS = $(SRCS:.c=.o)
+# DYNAMIC linking
+connections: $(OBJECT_MAIN) $(OBJECT_LIB)
+	$(CC) $(FLAGS) -o connections $(OBJECT_MAIN) ./$(MY_DYNAMIC_LIB) -lm
 
-# .PHONY: all
-# all: ${MY_LIB}
-all: $(MY_LIB) connections
+# DYNAMIC library
+$(MY_DYNAMIC_LIB): $(OBJECT_LIB)
+	$(CC) -shared -o $(MY_DYNAMIC_LIB) $(OBJECT_LIB)
 
-$(MY_LIB): $(OBJS)
-	$(CC) ${LDFLAGS} -o $@ $^
+# STATIC linking
+connections: $(OBJECT_MAIN) $(MY_STATIC_LIB)
+	$(CC) $(FLAGS) -o connections $(OBJECT_MAIN) $(MY_STATIC_LIB) -lm
 
-# $(SRCS:.c=.d):%.d:%.c
-# 	$(CC) $(CFLAGS) -MM $< >$@
-#
-# include $(SRCS:.c=.d)
-main.o: main.c my_mat.h
+# STATIC library
+$(MY_STATIC_LIB): $(OBJECT_LIB)
+	$(AR) -o $(MY_STATIC_LIB) $(OBJECT_LIB)
+
+$(OBJECT_LIB): my_mat.c my_mat.h
+
+$(OBJECT_MAIN): main.c my_mat.h
+	$(CC) $(FLAGS) -c main.c
 
 .PHONY: clean
 clean:
-#	-${RM} ${MY_LIB} ${OBJS} $(SRCS:.c=.d)
-	rm -f *.o *.a *.so connections $(MY_LIB) *.txt
+#	-${RM} ${MY_DYNAMIC_LIB} ${OBJS} $(SRCS:.c=.d)
+	rm -f *.o *.a *.so connections $(MY_DYNAMIC_LIB) *.txt
