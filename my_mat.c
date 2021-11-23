@@ -3,11 +3,11 @@
 
 #define N 10
 #define NXN 100
-// #define T 2
 #define TRUE 1
 #define FALSE 0
 #define DIS 0
 #define Z 0
+#define INIT 1
 #define MAX_NUM 2147483648
 #define MIN_NUM -2147483648
 #define ERR -1
@@ -25,23 +25,26 @@ Initiate the path metrics at the same time as the original metrics all the value
 */
 
 // FUNCTION A:
-int init_mat(int mat[N][N]);
-int generate_mat_from_input(int mat[N][N]);
+int init_mat(int mat[N][N], int path_mat[N][N]);
+int generate_mat_from_input(int mat[N][N], int path_mat[N][N]);
 // FUNCTION B:
+int bool_Z_is_false(int val);
+int bool_B(int path_mat[N][N]);
 int path_exists(int i, int j, int mat[N][N]);
 
 // FUNCTION C:
+int prev_C(int path_mat[N][N]);
 int floydWarshall(int i, int j, int mat[][N]);
 
 // Initialize and generate a matrix from input
-int func_A(int mat[N][N])
+int func_A(int mat[N][N], int path_mat[N][N])
 {
-    init_mat(mat);
-    generate_mat_from_input(mat);
+    init_mat(mat, path_mat);
+    generate_mat_from_input(mat, path_mat);
 }
 
 // Prints "True" if there's a path from i to j, else- prints "False"
-int func_B(int mat[N][N])
+int func_B(int mat[N][N], int path_mat[N][N])
 {
     int bool = MIN_NUM;
     printf("Enter i:\n");
@@ -63,7 +66,7 @@ int func_B(int mat[N][N])
 }
 
 // Prints "True" if there's a path from i to j, else- prints "False"
-int func_C(int mat[N][N])
+int func_C(int mat[N][N], int path_mat[N][N])
 {
     printf("Enter i:\n");
     int i = MIN_NUM;
@@ -88,21 +91,35 @@ int func_C(int mat[N][N])
 // remember pointers and memory usage of arrays
 
 // because the graph is undirected: mat[i][j]=mat[j][i]
-int init_mat(int mat[N][N])
+int init_mat(int mat[N][N], int path_mat[N][N])
 {
     for (int i = Z; i < N; i++)
     {
         mat[i][i] = Z;
         for (int j = i + 1; j < N; j++)
         {
-            mat[i][j] = DIS;
-            mat[j][i] = DIS;
+            mat[i][j] = ERR;
+            mat[j][i] = ERR;
+            path_mat[i][j] = ERR;
+            path_mat[j][i] = ERR;
         }
     }
     return 0;
 }
 
-int generate_mat_from_input(int mat[N][N])
+int min_func(int ij, int ji)
+{
+    if (ij < ji)
+    {
+        return ij;
+    }
+    else
+    {
+        return ji;
+    }
+}
+
+int generate_mat_from_input(int mat[N][N], int path_mat[N][N])
 {
     for (int i = Z; i < N; i++)
     {
@@ -111,9 +128,51 @@ int generate_mat_from_input(int mat[N][N])
             int w;
             printf("Enter value of mat[%d][%d]", i, j);
             scanf("%d", w);
-            mat[i][j] = w;
+            if (mat[i][j] == ERR)
+            {
+                mat[i][j] = w;
+            }
+            else
+            {
+                int min = min_func(w, mat[j][i]);
+                mat[i][j] = min;
+                mat[j][i] = min;
+                path_mat[i][j] = min;
+                path_mat[j][i] = min;
+            }
         }
     }
+    return 0;
+}
+
+int bool_Z_is_false(int val)
+{
+    if (val < Z)
+    {
+        printf("ERROR!!!");
+    }
+    else if (val == Z)
+    {
+        printf("False");
+    }
+    else
+    {
+        printf("True");
+    }
+    return 0;
+}
+
+// if B OR C were alredy called, all we need is to check path_mat[i][j]
+int bool_B(int path_mat[N][N])
+{
+    int bool = MIN_NUM;
+    printf("Enter i:\n");
+    int i = MIN_NUM;
+    scanf("%d\n", i);
+    printf("Enter j:\n");
+    int j = MIN_NUM;
+    scanf("%d\n", j);
+    bool_Z_is_false(path_mat[i][j]);
     return 0;
 }
 
@@ -124,6 +183,7 @@ int path_exists(int i, int j, int mat[N][N])
     if so- return TRUE(=1)
     else- return FALSE(=0)
     */
+    return 0;
 }
 
 // int return_init_mat_0_0(int mat[N][N])
@@ -131,6 +191,19 @@ int path_exists(int i, int j, int mat[N][N])
 //     int *p = &mat[Z][Z];
 //     return p;
 // }
+
+int prev_C(int path_mat[N][N])
+{
+    int bool = MIN_NUM;
+    printf("Enter i:\n");
+    int i = MIN_NUM;
+    scanf("%d\n", i);
+    printf("Enter j:\n");
+    int j = MIN_NUM;
+    scanf("%d\n", j);
+    printf("%d", path_mat[i][j]);
+    return 0;
+}
 
 int floydWarshall(int i, int j, int mat[][N])
 {
