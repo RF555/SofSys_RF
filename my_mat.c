@@ -25,45 +25,46 @@ Initiate the path metrics at the same time as the original metrics all the value
 */
 
 // FUNCTION A:
-int init_mat(int mat[N][N], int path_mat[N][N]);
-int generate_mat_from_input(int mat[N][N], int path_mat[N][N]);
+int init_mat(int (*mat_ptr)[N], int (*path_mat_ptr)[N]);
+int generate_mat_from_input(int (*mat_ptr)[N], int (*path_mat_ptr)[N]);
+
 // FUNCTION B:
 int bool_Z_is_false(int val);
-int bool_B(int path_mat[N][N]);
-int path_exists(int i, int j, int mat[N][N]);
+int bool_B(int (*path_mat_ptr)[N]);
+int path_exists(int i, int j, int (*mat_ptr)[N], int (*path_mat_ptr)[N]);
 
 // FUNCTION C:
-int prev_C(int path_mat[N][N]);
-int floydWarshall(int i, int j, int mat[][N]);
+int prev_C(int (*path_mat_ptr)[N]);
 
+int floydWarshall(int i, int j, int (*mat_ptr)[N], int (*path_mat_ptr)[N]);
 int scan_i();
 int scan_j();
 
 // Initialize and generate a matrix from input
-int func_A(int mat[N][N], int path_mat[N][N])
+int func_A(int (*mat_ptr)[N], int (*path_mat_ptr)[N])
 {
-    init_mat(mat, path_mat);
-    generate_mat_from_input(mat, path_mat);
+    init_mat(mat_ptr, path_mat_ptr);
+    generate_mat_from_input(mat_ptr, path_mat_ptr);
     return 0;
 }
 
 // Prints "True" if there's a path from i to j, else- prints "False"
-int func_B(int mat[N][N], int path_mat[N][N])
+int func_B(int (*mat_ptr)[N], int (*path_mat_ptr)[N])
 {
     int path_mat_ij = MIN_NUM;
     int i = scan_i();
     int j = scan_j();
-    path_mat_ij = path_exists(i, j, mat);
+    path_mat_ij = path_exists(i, j, mat_ptr,path_mat_ptr);
     bool_Z_is_false(path_mat_ij);
     return 0;
 }
 
 // Prints "True" if there's a path from i to j, else- prints "False"
-int func_C(int mat[N][N], int path_mat[N][N])
+int func_C(int (*mat_ptr)[N], int (*path_mat_ptr)[N])
 {
     int i = scan_i();
     int j = scan_j();
-    int path = floydWarshall(i, j, mat);
+    int path = floydWarshall(i, j, mat_ptr,path_mat_ptr);
     if (path == 0)
     {
         /* code */
@@ -80,17 +81,16 @@ int func_C(int mat[N][N], int path_mat[N][N])
 // remember pointers and memory usage of arrays
 
 // because the graph is undirected: mat[i][j]=mat[j][i]
-int init_mat(int mat[N][N], int path_mat[N][N])
+int init_mat(int (*mat_ptr)[N], int (*path_mat_ptr)[N])
 {
     for (int i = Z; i < N; i++)
     {
-        mat[i][i] = Z;
-        for (int j = i + 1; j < N; j++)
+        for (int j = i; j < N; j++)
         {
-            mat[i][j] = ERR;
-            mat[j][i] = ERR;
-            path_mat[i][j] = ERR;
-            path_mat[j][i] = ERR;
+            (*(*(mat_ptr + i) + j)) = ERR;
+            (*(*(mat_ptr + j) + i)) = ERR;
+            (*(*(path_mat_ptr + i) + j)) = ERR;
+            (*(*(path_mat_ptr + j) + i)) = ERR;
         }
     }
     return 0;
@@ -108,7 +108,7 @@ int min_func(int ij, int ji)
     }
 }
 
-int generate_mat_from_input(int mat[N][N], int path_mat[N][N])
+int generate_mat_from_input(int (*mat_ptr)[N], int (*path_mat_ptr)[N])
 {
     for (int i = Z; i < N; i++)
     {
@@ -117,17 +117,17 @@ int generate_mat_from_input(int mat[N][N], int path_mat[N][N])
             int w;
             printf("Enter value of mat[%d][%d]\n", i, j);
             scanf("%d", &w);
-            if (mat[i][j] == ERR)
+            if ((*(*(mat_ptr + i) + j)) == ERR)
             {
-                mat[i][j] = w;
+                (*(*(mat_ptr + i) + j)) = w;
             }
             else
             {
-                int min = min_func(w, mat[j][i]);
-                mat[i][j] = min;
-                mat[j][i] = min;
-                path_mat[i][j] = min;
-                path_mat[j][i] = min;
+                int min = min_func(w, (*(*(mat_ptr + j) + i)));
+                (*(*(mat_ptr + i) + j)) = min;
+                (*(*(mat_ptr + j) + i)) = min;
+                (*(*(path_mat_ptr + i) + j)) = min;
+                (*(*(path_mat_ptr + j) + i)) = min;
             }
         }
     }
@@ -152,16 +152,16 @@ int bool_Z_is_false(int val)
 }
 
 // if B OR C were alredy called, all we need is to check path_mat[i][j]
-int bool_B(int path_mat[N][N])
+int bool_B(int (*path_mat_ptr)[N])
 {
     int i = scan_i();
     int j = scan_j();
-    bool_Z_is_false(path_mat[i][j]);
+    bool_Z_is_false((*(*(path_mat_ptr + i) + j)));
     return 0;
 }
 
 // returns the value of the first path generated from i to j
-int path_exists(int i, int j, int mat[N][N])
+int path_exists(int i, int j, int (*mat_ptr)[N], int (*path_mat_ptr)[N])
 {
     int path_ij = MIN_NUM;
     /*
@@ -178,15 +178,15 @@ int path_exists(int i, int j, int mat[N][N])
 //     return p;
 // }
 
-int prev_C(int path_mat[N][N])
+int prev_C(int (*path_mat_ptr)[N])
 {
     int i = scan_i();
     int j = scan_j();
-    printf("%d\n", path_mat[i][j]);
+    printf("%d\n", (*(*(path_mat_ptr + i) + j)));
     return 0;
 }
 
-int floydWarshall(int i, int j, int mat[][N])
+int floydWarshall(int i, int j, int (*mat_ptr)[N], int (*path_mat_ptr)[N])
 {
     // int min_dist[N][N]; //initialize min_dist as a copy of mat
     // for (int i = Z; i < N; ++i)
@@ -210,7 +210,7 @@ int scan_i()
 {
     printf("Enter i:\n");
     int i = MIN_NUM;
-    scanf("%d\n", &i);
+    scanf("%d", &i);
     return i;
 }
 
@@ -218,6 +218,6 @@ int scan_j()
 {
     printf("Enter j:\n");
     int j = MIN_NUM;
-    scanf("%d\n", &j);
+    scanf("%d", &j);
     return j;
 }

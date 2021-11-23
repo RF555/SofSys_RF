@@ -15,26 +15,30 @@
 int main()
 {
     int mat[N][N], path_mat[N][N];
-    init_mat(mat, path_mat);
-    char select[1] = "E";
+    int(*mat_ptr)[N];
+    int(*path_mat_ptr)[N];
+    mat_ptr = mat;
+    path_mat_ptr = path_mat;
+    init_mat(mat_ptr, path_mat_ptr);
+    char select= 'E';
     int firstA = Z;
     int firstB = Z;
     int firstC = Z;
-    while (select[0] != 'D')
+    while (select != 'D')
     {
         printf("Enter A, B, C or D:\n");
-        scanf("%c", select);
+        scanf("%c", &select);
         // char select = sel;
-        if (select[0] == 'A')
+        if (select== 'A')
         {
             firstA = INIT;
             firstB = INIT;
             firstC = INIT;
             // Function A
-            func_A(mat, path_mat);
+            func_A(mat_ptr, path_mat_ptr);
         }
         // Function B
-        else if (select[0] == 'B')
+        else if (select == 'B')
         {
             if (firstA == Z)
             {
@@ -42,17 +46,17 @@ int main()
             }
             else if (firstB != Z || firstC != Z)
             {
-                bool_B(path_mat);
+                bool_B(path_mat_ptr);
             }
             else
             {
                 ++firstB;
-                func_B(mat, path_mat);
+                func_B(mat_ptr, path_mat_ptr);
             }
-            select[1] = 'E';
+            select = 'E';
         }
         // Function C
-        else if (select[0] == 'C')
+        else if (select == 'C')
         {
             if (firstA == Z)
             {
@@ -61,20 +65,20 @@ int main()
             else if (firstC != Z)
             {
                 ++firstC;
-                return prev_C(path_mat);
+                return prev_C(path_mat_ptr);
             }
             else
             {
                 ++firstC;
-                func_C(mat, path_mat);
+                func_C(mat_ptr, path_mat_ptr);
             }
-            select[1] = 'E';
+            select = 'E';
         }
-        else if (select[0] == 'D')
+        else
         {
+            select = 'E';
             break;
         }
-        select[1] = 'E';
     }
     printf("Bye-Bye!\n");
     return 0;

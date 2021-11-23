@@ -12,16 +12,16 @@
 #define MIN_NUM -2147483648
 #define ERR -1
 
-int init_mat(int mat[N][N], int path_mat[N][N]);
+int init_mat(int (*mat_ptr)[N], int (*path_mat_ptr)[N]);
 // FUNCTION A: Initialize and generate a matrix from input
-int func_A(int mat[N][N], int path_mat[N][N]);
+int func_A(int (*mat_ptr)[N], int (*path_mat_ptr)[N]);
 
 // FUNCTION B: Prints "True" if there's a path from i to j, else- prints "False"
-int bool_B(int path_mat[N][N]);
-int func_B(int mat[N][N], int path_mat[N][N]);
+int bool_B(int (*path_mat_ptr)[N]);
+int func_B(int (*mat_ptr)[N], int (*path_mat_ptr)[N]);
 
 // FUNCTION C: Prints the shortest path from i to j
-int prev_C(int path_mat[N][N]);
-int func_C(int mat[N][N], int path_mat[N][N]);
+int prev_C(int (*path_mat_ptr)[N]);
+int func_C(int (*mat_ptr)[N], int (*path_mat_ptr)[N]);
 
 #endif
