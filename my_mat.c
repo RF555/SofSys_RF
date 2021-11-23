@@ -10,7 +10,19 @@
 #define Z 0
 #define MAX_NUM 2147483648
 #define MIN_NUM -2147483648
-#define EROR -1
+#define ERR -1
+
+/*
+
+Reset all the metrics to -1 instead of zero 
+
+When you get the metrics input every duration check whether the other state has already value if so mark the value of both as a minimum of the value of the new input in the previous one else just enter the same input 
+
+When entering an input of a new metrics create a new metrics called path mat which represents the know the path of all the nodes firstly his path every every path is just a path between its nodes if there if they exist one in this be value if not they'll be zero. Edit every slot of IG after I received over a minimum of the previous original metrics then add a JNJ which are equal 
+
+Initiate the path metrics at the same time as the original metrics all the values of it will be -1
+
+*/
 
 // FUNCTION A:
 int init_mat(int mat[N][N]);
@@ -63,7 +75,7 @@ int func_C(int mat[N][N])
     if (path == 0)
     {
         /* code */
-        printf("%d\n", EROR);
+        printf("%d\n", ERR);
     }
     else
     {
