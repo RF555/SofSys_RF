@@ -1,18 +1,6 @@
 #include <stdio.h>
 #include "my_mat.h"
 
-/*
-
-Reset all the metrics to -1 instead of zero 
-
-When you get the metrics input every duration check whether the other state has already value if so mark the value of both as a minimum of the value of the new input in the previous one else just enter the same input 
-
-When entering an input of a new metrics create a new metrics called path mat which represents the know the path of all the nodes firstly his path every every path is just a path between its nodes if there if they exist one in this be value if not they'll be zero. Edit every slot of IG after I received over a minimum of the previous original metrics then add a JNJ which are equal 
-
-Initiate the path metrics at the same time as the original metrics all the values of it will be -1
-
-*/
-
 // FUNCTION A:
 int init_mat(int *mat, int *path_mat);
 int generate_mat_from_input(int *mat, int *path_mat);
@@ -53,7 +41,7 @@ int func_C(int *mat, int *path_mat)
 {
     int i = scan_i();
     int j = scan_j();
-    int path = floydWarshall(i, j,&mat[0], &path_mat[0]);
+    int path = floydWarshall(i, j, &mat[0], &path_mat[0]);
     if (path == 0)
     {
         /* code */
