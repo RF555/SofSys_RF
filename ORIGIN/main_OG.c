@@ -4,11 +4,7 @@
 int main()
 {
     int mat[N][N], path_mat[N][N];
-    int(*mat_ptr)[N];
-    int(*path_mat_ptr)[N];
-    mat_ptr = mat;
-    path_mat_ptr = path_mat;
-    init_mat(mat_ptr, path_mat_ptr);
+    init_mat(&mat[0][0], &path_mat[0][0]);
     char select= 'E';
     int firstA = Z;
     int firstB = Z;
@@ -24,7 +20,7 @@ int main()
             firstB = INIT;
             firstC = INIT;
             // Function A
-            func_A(mat_ptr, path_mat_ptr);
+            func_A(&mat[0][0], &path_mat[0][0]);
         }
         // Function B
         else if (select == 'B')
@@ -35,12 +31,12 @@ int main()
             }
             else if (firstB != Z || firstC != Z)
             {
-                bool_B(path_mat_ptr);
+                bool_B(&path_mat[0][0]);
             }
             else
             {
                 ++firstB;
-                func_B(mat_ptr, path_mat_ptr);
+                func_B(&mat[0][0], &path_mat[0][0]);
             }
             select = 'E';
         }
@@ -54,12 +50,12 @@ int main()
             else if (firstC != Z)
             {
                 ++firstC;
-                prev_C(path_mat_ptr);
+                prev_C(&path_mat[0][0]);
             }
             else
             {
                 ++firstC;
-                func_C(mat_ptr, path_mat_ptr);
+                func_C(&mat[0][0], &path_mat[0][0]);
             }
             select = 'E';
         }
