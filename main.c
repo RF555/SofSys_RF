@@ -26,7 +26,7 @@ int main()
     int firstC = Z;
     while (select != 'D')
     {
-        printf("Enter A, B, C or D:\n");
+        printf("Enter A, B, C or D:");
         scanf("%c", &select);
         // char select = sel;
         if (select== 'A')
@@ -65,7 +65,7 @@ int main()
             else if (firstC != Z)
             {
                 ++firstC;
-                return prev_C(path_mat_ptr);
+                prev_C(path_mat_ptr);
             }
             else
             {
