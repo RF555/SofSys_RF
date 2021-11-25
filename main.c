@@ -3,61 +3,37 @@
 
 int main()
 {
-    int mat[N][N], path_mat[N][N];
-    init_mat(&mat[0][0], &path_mat[0][0]);
-    char select = 'E';
+    int mat[N][N];
+    int path_mat[N][N];
+    int(*mat_ptr)[N];
+    mat_ptr = mat;
+    int(*path_mat_ptr)[N];
+    path_mat_ptr = path_mat;
+    init_mat(mat_ptr, path_mat_ptr);
+    char select;
+    scanf("%c", &select);
     char *sel_p = &select;
-    int firstA = Z;
-    int firstB = Z;
-    int firstC = Z;
     while (select != 'D')
     {
         // printf("Enter A, B, C or D:\n");
-        scanf("%c", sel_p);
         if (*sel_p == 'A')
         {
-            firstA = INIT;
-            firstB = INIT;
-            firstC = INIT;
             // Function A
-            func_A(&mat[0][0], &path_mat[0][0]);
+            init_mat(mat_ptr, path_mat_ptr);
+            generate_mat_from_input(mat_ptr, path_mat_ptr);
+            floydWarshall(path_mat_ptr);
             *sel_p = 'E';
         }
         // Function B
         else if (*sel_p == 'B')
         {
-            if (firstA == Z)
-            {
-                printf("Matrix not initialized yet! please type A!");
-            }
-            else if (firstB != Z || firstC != Z)
-            {
-                bool_B(&path_mat[0][0]);
-            }
-            else
-            {
-                ++firstB;
-                func_B(&mat[0][0], &path_mat[0][0]);
-            }
+            func_B(path_mat_ptr);
             *sel_p = 'E';
         }
         // Function C
         else if (*sel_p == 'C')
         {
-            if (firstA == Z)
-            {
-                // printf("Matrix not initialized yet! please type A!");
-            }
-            else if (firstC != Z)
-            {
-                ++firstC;
-                prev_C(&path_mat[0][0]);
-            }
-            else
-            {
-                ++firstC;
-                func_C(&mat[0][0], &path_mat[0][0]);
-            }
+            func_C(mat_ptr, path_mat_ptr);
             *sel_p = 'E';
         }
         else if (*sel_p == 'D') // select == 'D'
@@ -65,6 +41,7 @@ int main()
             // printf("Bye-Bye!\n");
             break;
         }
+        scanf("%c", sel_p);
     }
     return 0;
 }
