@@ -1,16 +1,15 @@
 CC = gcc
 FLAGS = -Wall -g
 # MY_DYNAMIC_LIB = 
-# MY_STATIC_LIB = 
 AR = ar
 # OBJECT_LIB = 
 # OBJECT_MAIN = 
 
-all: #??
+all: stringProg
 
 # # DYNAMIC linking
-??: $(OBJECT_MAIN) $(MY_DYNAMIC_LIB)
-	$(CC) $(FLAGS) -o ?? $(OBJECT_MAIN) ./$(MY_DYNAMIC_LIB) -lm
+stringProg: $(OBJECT_MAIN) $(MY_DYNAMIC_LIB)
+	$(CC) $(FLAGS) -o stringProg $(OBJECT_MAIN) ./$(MY_DYNAMIC_LIB) -lm
 
 # DYNAMIC library
 $(MY_DYNAMIC_LIB): $(OBJECT_LIB)
