@@ -24,4 +24,4 @@ $(OBJECT_MAIN): ???.c ???.h
 .PHONY: clean
 clean:
 #	-${RM} ${MY_DYNAMIC_LIB} ${OBJS} $(SRCS:.c=.d)
-	rm -f *.o *.a *.so ?? $(MY_DYNAMIC_LIB) $(MY_STATIC_LIB)
+	rm -f *.o *.a *.so stringProg $(MY_DYNAMIC_LIB) $(MY_STATIC_LIB)
