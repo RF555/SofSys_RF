@@ -62,7 +62,10 @@ dkms.conf
 # loops
 
 #Ex2 file
-test_main.c
-connections
+# test_main.c
+# connections
+
+#Ex3 file
+
 
 *.txt
