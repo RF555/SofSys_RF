@@ -15,11 +15,14 @@
 #define a_ASCII 97
 #define z_ASCII 122
 #define LETT_NUM 26
+#define FALSE -1
+#define TRUE 1
 
-int gematria_seq(char (*word)[WORD], int (*text)[TXT]);
 
-int atbash_seq(char (*word)[WORD], int (*text)[TXT]);
+int gematria_seq(char word[WORD], char text[TXT]);
 
-int anagram_seq(char (*word)[WORD], int (*text)[TXT]);
+int atbash_seq(char word[WORD], char text[TXT]);
+
+int anagram_seq(char word[WORD], char text[TXT]);
 
 #endif
