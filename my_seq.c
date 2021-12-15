@@ -57,6 +57,7 @@ int gematria_seq(char word[WORD], char text[TXT])
             {
                 ++src_ptr;
                 break;
+                
             }
         }
 
