@@ -1,9 +1,9 @@
 CC = gcc
 FLAGS = -Wall -g
-# MY_DYNAMIC_LIB = 
+MY_DYNAMIC_LIB = libseq.so
 AR = ar
-# OBJECT_LIB = 
-# OBJECT_MAIN = 
+OBJECT_LIB = my_seq.o
+OBJECT_MAIN = main.o
 
 all: stringProg
 
@@ -15,10 +15,10 @@ stringProg: $(OBJECT_MAIN) $(MY_DYNAMIC_LIB)
 $(MY_DYNAMIC_LIB): $(OBJECT_LIB)
 	$(CC) -shared -o $(MY_DYNAMIC_LIB) $(OBJECT_LIB)
 
-$(OBJECT_LIB): ???.c ????.h
-	$(CC) $(FLAGS) -c ???.c
+$(OBJECT_LIB): my_seq.c my_seq.h
+	$(CC) $(FLAGS) -c my_seq.c
 
-$(OBJECT_MAIN): ???.c ???.h
+$(OBJECT_MAIN): my_seq.c my_seq.h
 	$(CC) $(FLAGS) -c main.c
 
 .PHONY: clean
