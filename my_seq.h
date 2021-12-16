@@ -7,9 +7,9 @@
 #define WE2 '\t'
 #define WE3 '\n'
 #define TXTE '~'
-#define GEM "Gematria Sequences:"
-#define ATB "Atbash Sequences:"
-#define ANG "Anagram Sequences:"
+#define GEM "Gematria Sequences: "
+#define ATB "Atbash Sequences: "
+#define ANG "Anagram Sequences: "
 #define A_ASCII 65
 #define Z_ASCII 90
 #define a_ASCII 97
@@ -19,7 +19,7 @@
 #define TRUE 1
 
 
-int gematria_seq(char word[WORD], char text[TXT]);
+int gematria_seq(char *word, int word_size, char *text, int text_size);
 
 int atbash_seq(char word[WORD], char text[TXT]);
 
