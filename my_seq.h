@@ -14,7 +14,6 @@
 #define Z_ASCII 90
 #define a_ASCII 97
 #define z_ASCII 122
-#define LETT_NUM 26
 #define FALSE -1
 #define TRUE 1
 

@@ -158,6 +158,8 @@ int atbash_seq(char *word, int word_size, char *text, int text_size) {
     return 0;
 }
 
+// ANAGRAM functions
+
 int anagram_seq(char *word, int word_size, char *text, int text_size) {
 
     return 0;
