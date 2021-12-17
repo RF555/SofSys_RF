@@ -21,8 +21,8 @@
 
 int gematria_seq(char *word, int word_size, char *text, int text_size);
 
-int atbash_seq(char word[WORD], char text[TXT]);
+int atbash_seq(char *word, int word_size, char *text, int text_size);
 
-int anagram_seq(char word[WORD], char text[TXT]);
+int anagram_seq(char *word, int word_size, char *text, int text_size);
 
 #endif

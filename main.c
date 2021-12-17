@@ -24,7 +24,7 @@ int main() {
     }
     char *text_ptr = word_ptr + word_size;
     gematria_seq(word, word_size, text_ptr, (total_size - word_size));
-//    atbash_seq(word_ptr, text_ptr);
-//    anagram_seq(word_ptr, text_ptr);
+    atbash_seq(word, word_size, text_ptr, (total_size - word_size));
+//    anagram_seq(word, word_size, text_ptr, (total_size - word_size));
     return 0;
 }

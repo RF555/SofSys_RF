@@ -2,13 +2,34 @@
 #include <string.h>
 #include "my_seq.h"
 
-int is_minimal(char *curr_seq, int seq_size); //if is minimal -> return 1
 
-int gematria(char(*word), char(*text));
+int meaningless(char ch) { //if is meaningless -> return 1
+//    if (ch == WE1 || ch == WE2 || ch == WE3) {
+    if ((ch >= A_ASCII && ch <= Z_ASCII) || (ch >= a_ASCII && ch <= z_ASCII)) {
+        return FALSE;
+    } else {
+        return TRUE;
+    }
+}
 
-int gematria_val(char latter);
+int gematria_val(char latter) {
+    int ascii_val = (int) latter;
+    if (ascii_val >= A_ASCII && ascii_val <= Z_ASCII) {
+        return (ascii_val - A_ASCII + 1);
+    } else if (ascii_val >= a_ASCII && ascii_val <= z_ASCII) {
+        return (ascii_val - a_ASCII + 1);
+    } else {
+        return 0;
+    }
+}
 
-int meaningless(char ch); //if is meaningless -> return 1
+int is_minimal(char *curr_seq, int seq_size) { //if is minimal -> return 1
+    if (meaningless(*(curr_seq)) == FALSE && meaningless(*(curr_seq + seq_size - 1)) == FALSE) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
 
 int gematria_seq(char *word, int word_size, char *text, int text_size) {
     char print_gem[TXT];
@@ -57,40 +78,57 @@ int gematria_seq(char *word, int word_size, char *text, int text_size) {
     return 0;
 }
 
-int meaningless(char ch) {
-//    if (ch == WE1 || ch == WE2 || ch == WE3) {
-    if ((ch >= A_ASCII && ch <= Z_ASCII) || (ch >= a_ASCII && ch <= z_ASCII)) {
-        return FALSE;
-    } else {
-        return TRUE;
+// ATBASH functions
+
+char atbash_swap(char ch) {
+    if (ch >= A_ASCII && ch <= Z_ASCII) {
+        return Z_ASCII + A_ASCII - ch;
+    } else if (ch >= a_ASCII && ch <= z_ASCII) {
+        return z_ASCII + a_ASCII - ch;
     }
-}
-
-int gematria_val(char latter) {
-    int ascii_val = (int) latter;
-    if (ascii_val >= A_ASCII && ascii_val <= Z_ASCII) {
-        return (ascii_val - A_ASCII + 1);
-    } else if (ascii_val >= a_ASCII && ascii_val <= z_ASCII) {
-        return (ascii_val - a_ASCII + 1);
-    } else {
-        return 0;
-    }
-}
-
-int is_minimal(char *curr_seq, int seq_size) {
-    if (meaningless(*(curr_seq)) == FALSE && meaningless(*(curr_seq + seq_size - 1)) == FALSE) {
-        return TRUE;
-    } else {
-        return FALSE;
-    }
-}
-
-int atbash_seq(char word[WORD], char text[TXT]) {
-
     return 0;
 }
 
-int anagram_seq(char word[WORD], char text[TXT]) {
+int atbash_seq(char *word, int word_size, char *text, int text_size) {
+
+
+    while (*src_ptr != '~') {
+        if (meaningless(*src_ptr) == TRUE) {
+            ++src_ptr;
+        }
+        char *dest_ptr = src_ptr;
+        while (*dest_ptr != '~') {
+            if (meaningless(*dest_ptr) == TRUE) {
+                ++dest_ptr;
+            }
+            int seq_size = (int) (dest_ptr - src_ptr) + 1;
+            int seq_value = 0;
+            for (int i = 0; i < seq_size; ++i) {
+
+
+            }
+            if ( && is_minimal(src_ptr, seq_size) == TRUE) {
+                if (print_atb_size > 0) {
+                    print_atb[print_atb_size] = '~';
+                    ++print_atb_size;
+                }
+                strncpy((print_atb + print_atb_size), src_ptr, seq_size);
+                print_atb_size = print_atb_size + seq_size;
+                break;
+            } else if (seq_value < word_value) {
+                ++dest_ptr;
+            } else {
+                break;
+            }
+        }
+        ++src_ptr;
+    }
+    print_atb[print_atb_size] = '\0';
+    printf("%s%s", ATB, print_atb);
+    return 0;
+}
+
+int anagram_seq(char *word, int word_size, char *text, int text_size){
 
     return 0;
 }
