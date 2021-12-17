@@ -10,28 +10,27 @@ int gematria_val(char latter);
 
 int meaningless(char ch); //if is meaningless -> return 1
 
-int gematria_seq(char *word, int word_size, char *text, int text_size){
+int gematria_seq(char *word, int word_size, char *text, int text_size) {
     char print_gem[TXT];
     int print_gem_size = 0;
-    char *word_ptr = word;
     char *src_ptr = text;
     int word_value = 0;
     for (int i = 0; i < word_size; ++i) {
-        word_value = word_value + gematria_val(*(word_ptr + i));
+        word_value = word_value + gematria_val(*(word + i));
     }
-    while (*src_ptr != TXTE) {
+    while (*src_ptr != '~') {
         if (meaningless(*src_ptr) == TRUE) {
             ++src_ptr;
         }
         char *dest_ptr = src_ptr;
-        while (*dest_ptr != TXTE) {
+        while (*dest_ptr != '~') {
 //            if (*src_ptr == *dest_ptr) {
 //                ++dest_ptr;
 //            }
             if (meaningless(*dest_ptr) == TRUE) {
                 ++dest_ptr;
             }
-            int seq_size = (int) (dest_ptr - src_ptr)+1;
+            int seq_size = (int) (dest_ptr - src_ptr) + 1;
             int seq_value = 0;
             for (int i = 0; i < seq_size; ++i) {
                 int temp_val = gematria_val(*(src_ptr + i));
@@ -39,22 +38,20 @@ int gematria_seq(char *word, int word_size, char *text, int text_size){
             }
             if (seq_value == word_value && is_minimal(src_ptr, seq_size) == TRUE) {
                 if (print_gem_size > 0) {
-                    print_gem[print_gem_size] = TXTE;
+                    print_gem[print_gem_size] = '~';
                     ++print_gem_size;
                 }
                 strncpy((print_gem + print_gem_size), src_ptr, seq_size);
                 print_gem_size = print_gem_size + seq_size;
-                ++src_ptr;
                 break;
             } else if (seq_value < word_value) {
                 ++dest_ptr;
-            } else {
-                ++src_ptr;
-                break;
             }
         }
+        ++src_ptr;
     }
-    printf("%s", GEM);
+    print_gem[print_gem_size]='\0';
+    printf("%s%s", GEM, print_gem);
     return 0;
 }
 
@@ -79,7 +76,7 @@ int gematria_val(char latter) {
 }
 
 int is_minimal(char *curr_seq, int seq_size) {
-    if (meaningless(*(curr_seq)) == FALSE && meaningless(*(curr_seq + seq_size - 1) == FALSE)) {
+    if (meaningless(*(curr_seq)) == FALSE && meaningless(*(curr_seq + seq_size - 1)) == FALSE) {
         return TRUE;
     } else {
         return FALSE;
