@@ -128,12 +128,11 @@ int atbash_seq(char *word, int word_size, char *text, int text_size) {
                 ++dest_ptr;
             }
             int seq_size = (int) (dest_ptr - src_ptr) + 1;
-            int seq_value = 0;
+            int empty_count = 0;
             for (int i = 0; i < seq_size; ++i) {
                 if (meaningless(*(src_ptr + i)) == TRUE) {
-
+                    ++empty_count;
                 }
-
             }
             if (is_minimal(src_ptr, seq_size) == TRUE &&
                 (is_atb(word_atb, word_size, src_ptr, seq_size) == TRUE ||
@@ -145,7 +144,7 @@ int atbash_seq(char *word, int word_size, char *text, int text_size) {
                 strncpy((print_atb + print_atb_size), src_ptr, seq_size);
                 print_atb_size = print_atb_size + seq_size;
                 break;
-            } else if (seq_value < word_size) {
+            } else if (seq_size - empty_count < word_size) {
                 ++dest_ptr;
             } else {
                 break;
