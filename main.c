@@ -3,17 +3,17 @@
 #include "string.h"
 
 int main() {
-    char input[] = "abcd\n"
-                   "a-bc,dbca-zwxyzabzyxw0dcba~";
-    int total_size = sizeof(input);
-//    char input[TXT];
-//    int total_size = 0;
-//    while (input[total_size - 1] != '~') {
-//        char temp;
-//        scanf("%c", &temp);
-//        input[total_size] = temp;
-//        ++total_size;
-//    }
+//    char input[] = "abcd\n"
+//                   "a-bc,dbca-zwxyzabzyxw0dcba~";
+//    int total_size = sizeof(input);
+    char input[TXT];
+    int total_size = 0;
+    while (input[total_size - 1] != '~') {
+        char temp;
+        scanf("%c", &temp);
+        input[total_size] = temp;
+        ++total_size;
+    }
     char *word_ptr = input;
     int word_size = 0;
     char word[WORD];
