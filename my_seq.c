@@ -46,11 +46,13 @@ int gematria_seq(char *word, int word_size, char *text, int text_size) {
                 break;
             } else if (seq_value < word_value) {
                 ++dest_ptr;
+            } else {
+                break;
             }
         }
         ++src_ptr;
     }
-    print_gem[print_gem_size]='\0';
+    print_gem[print_gem_size] = '\0';
     printf("%s%s", GEM, print_gem);
     return 0;
 }
