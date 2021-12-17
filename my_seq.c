@@ -101,6 +101,7 @@ int is_atb(char *atb_ptr, int atb_size, char *seq_ptr, int seq_size) {
             if (*(atb_ptr + i) != *(seq_ptr + j)) {
                 return FALSE;
             }
+            ++j;
         }
         return TRUE;
     }
