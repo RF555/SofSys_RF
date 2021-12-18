@@ -14,7 +14,7 @@
 #define Z_ASCII 90
 #define a_ASCII 97
 #define z_ASCII 122
-#define FALSE -1
+#define FALSE (-1)
 #define TRUE 1
 
 
