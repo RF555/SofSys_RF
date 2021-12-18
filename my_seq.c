@@ -42,7 +42,7 @@ int gematria_seq(char *word, int word_size, char *text, int text_size) {
     for (int i = 0; i < word_size; ++i) {
         word_value = word_value + gematria_val(*(word + i));
     }
-    while (*src_ptr != '~') {
+    while (*src_ptr != '~' && *src_ptr != '\0') {
         if (meaningless(*src_ptr) == TRUE) {
             ++src_ptr;
         }
@@ -120,7 +120,7 @@ int atbash_seq(char *word, int word_size, char *text, int text_size) {
         word_atb[i] = temp;
         word_rev_atb[word_size - 1 - i] = temp;
     }
-    while (*src_ptr != '~') {
+    while (*src_ptr != '~' && *src_ptr != '\0') {
         if (meaningless(*src_ptr) == TRUE) {
             ++src_ptr;
         }
