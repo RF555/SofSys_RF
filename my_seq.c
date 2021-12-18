@@ -160,7 +160,53 @@ int atbash_seq(char *word, int word_size, char *text, int text_size) {
 
 // ANAGRAM functions
 
-int anagram_seq(char *word, int word_size, char *text, int text_size) {
+int all_checked(int *ptr, int size) {
 
+}
+
+int anagram_seq(char *word, int word_size, char *text, int text_size) {
+    int check_ch[word_size];
+    for (int i = 0; i < word_size; ++i) {
+        check_ch[i] = FALSE;
+    }
+    char print_ang[TXT];
+    int print_ang_size = 0;
+    char *src_ptr = text;
+    while (*src_ptr != '~') {
+        if (meaningless(*src_ptr) == TRUE) {
+            ++src_ptr;
+        }
+        char *dest_ptr = src_ptr + word_size - 1;
+        while (*dest_ptr != '~') {
+            if (meaningless(*dest_ptr) == TRUE) {
+                ++dest_ptr;
+            }
+            int seq_size = (int) (dest_ptr - src_ptr) + 1;
+            int empty_count = 0;
+            for (int i = 0; i < seq_size; ++i) {
+                if (meaningless(*(src_ptr + i)) == TRUE) {
+                    ++empty_count;
+                }
+            }
+            if (is_minimal(src_ptr, seq_size) == TRUE &&
+                (seq_size - empty_count) == word_size &&
+                all_checked(check_ch, word_size)) {
+                if (print_ang_size > 0) {
+                    print_ang[print_ang_size] = '~';
+                    ++print_ang_size;
+                }
+                strncpy((print_ang + print_ang_size), src_ptr, seq_size);
+                print_ang_size = print_ang_size + seq_size;
+                break;
+            } else if (seq_size - empty_count < word_size) {
+                ++dest_ptr;
+            } else {
+                break;
+            }
+        }
+        ++src_ptr;
+    }
+    print_ang[print_ang_size] = '\0';
+    printf("%s%s", ATB, print_ang);
     return 0;
 }
