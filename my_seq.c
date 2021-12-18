@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "my_seq.h"
 
 
@@ -210,7 +211,7 @@ int anagram_seq(char *word, int word_size, char *text, int text_size) {
     int print_ang_size = 0;
     char *src_ptr = text;
 //    int check_ch[word_size];
-    while (*src_ptr != '~') {
+    while (*src_ptr != '~' && *src_ptr != '\0') {
         if (is_empty(*src_ptr) == TRUE ||
             ch_in_word(*src_ptr, word, word_size) == FALSE) {
             ++src_ptr;
@@ -229,7 +230,7 @@ int anagram_seq(char *word, int word_size, char *text, int text_size) {
             }
 //            for (int i = 0; i < word_size; ++i) {
 //                if (ch_in_word(*(src_ptr + i), word, word_size) != FALSE && check_ch[i] == FALSE) {
-////                    can_use_ch = TRUE;
+//                    can_use_ch = TRUE;
 //                    check_ch[i] = TRUE;
 //                }
 //            }
