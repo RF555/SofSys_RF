@@ -17,8 +17,7 @@ int main() {
     char *word_ptr = input;
     int word_size = 0;
     char word[WORD];
-//    while ((*(word_ptr + word_size) != WE1) && (*(word_ptr + word_size) != WE2) && (*(word_ptr + word_size) != WE3)) {
-    while ((*(word_ptr + word_size) != ' ') && (*(word_ptr + word_size) != '\t') && (*(word_ptr + word_size) != '\n')) {
+    while ((*(word_ptr + word_size) != WE1) && (*(word_ptr + word_size) != WE2) && (*(word_ptr + word_size) != WE3)) {
         word[word_size] = input[word_size];
         ++word_size;
     }

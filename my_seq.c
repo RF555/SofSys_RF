@@ -5,7 +5,6 @@
 
 
 int meaningless(char ch) { //if is meaningless -> return 1
-//    if (ch == WE1 || ch == WE2 || ch == WE3) {
     if ((ch >= A_ASCII && ch <= Z_ASCII) || (ch >= a_ASCII && ch <= z_ASCII)) {
         return FALSE;
     } else {
@@ -42,15 +41,12 @@ int gematria_seq(char *word, int word_size, char *text, int text_size) {
     for (int i = 0; i < word_size; ++i) {
         word_value = word_value + gematria_val(*(word + i));
     }
-    while (*src_ptr != '~' && *src_ptr != '\0') {
+    while (*src_ptr != TXTE && *src_ptr != '\0') {
         if (meaningless(*src_ptr) == TRUE) {
             ++src_ptr;
         }
         char *dest_ptr = src_ptr;
-        while (*dest_ptr != '~') {
-//            if (*src_ptr == *dest_ptr) {
-//                ++dest_ptr;
-//            }
+        while (*dest_ptr != TXTE) {
             if (meaningless(*dest_ptr) == TRUE) {
                 ++dest_ptr;
             }
@@ -62,7 +58,7 @@ int gematria_seq(char *word, int word_size, char *text, int text_size) {
             }
             if (seq_value == word_value && is_minimal(src_ptr, seq_size) == TRUE) {
                 if (print_gem_size > 0) {
-                    print_gem[print_gem_size] = '~';
+                    print_gem[print_gem_size] = TXTE;
                     ++print_gem_size;
                 }
                 strncpy((print_gem + print_gem_size), src_ptr, seq_size);
@@ -120,12 +116,12 @@ int atbash_seq(char *word, int word_size, char *text, int text_size) {
         word_atb[i] = temp;
         word_rev_atb[word_size - 1 - i] = temp;
     }
-    while (*src_ptr != '~' && *src_ptr != '\0') {
+    while (*src_ptr != TXTE && *src_ptr != '\0') {
         if (meaningless(*src_ptr) == TRUE) {
             ++src_ptr;
         }
         char *dest_ptr = src_ptr + word_size - 1;
-        while (*dest_ptr != '~') {
+        while (*dest_ptr != TXTE) {
             if (meaningless(*dest_ptr) == TRUE) {
                 ++dest_ptr;
             }
@@ -140,7 +136,7 @@ int atbash_seq(char *word, int word_size, char *text, int text_size) {
                 (is_atb(word_atb, word_size, src_ptr, seq_size) == TRUE ||
                  is_atb(word_rev_atb, word_size, src_ptr, seq_size) == TRUE)) {
                 if (print_atb_size > 0) {
-                    print_atb[print_atb_size] = '~';
+                    print_atb[print_atb_size] = TXTE;
                     ++print_atb_size;
                 }
                 strncpy((print_atb + print_atb_size), src_ptr, seq_size);
@@ -160,15 +156,6 @@ int atbash_seq(char *word, int word_size, char *text, int text_size) {
 }
 
 // ANAGRAM functions
-
-int all_checked(int *ptr, int size) {
-    for (int i = 0; i < size; ++i) {
-        if (*(ptr + i) == FALSE) {
-            return FALSE;
-        }
-    }
-    return TRUE;
-}
 
 int is_empty(char ch) {
     if (ch == WE1 || ch == WE2 || ch == WE3 || ch == TXTE) {
@@ -190,10 +177,10 @@ int ch_in_word(char ch, char *word_ptr, int word_size) {
 int is_anagram(char *word_ptr, int word_size, char *seq_ptr, int seq_size) {
     int check_ang[200] = {0};
     for (int i = 0; i < word_size; ++i) {
-        if (word_ptr[i] != ' ') {
+        if (word_ptr[i] != WE1) {
             check_ang[(int) *(word_ptr + i)] += 1;
         }
-        if (seq_ptr[i] != ' ' && seq_size > i) {
+        if (seq_ptr[i] != WE1 && seq_size > i) {
             check_ang[(int) *(seq_ptr + i)] -= 1;
         }
     }
@@ -210,30 +197,19 @@ int anagram_seq(char *word, int word_size, char *text, int text_size) {
     char print_ang[TXT];
     int print_ang_size = 0;
     char *src_ptr = text;
-//    int check_ch[word_size];
-    while (*src_ptr != '~' && *src_ptr != '\0') {
+    while (*src_ptr != TXTE && *src_ptr != '\0') {
         if (is_empty(*src_ptr) == TRUE ||
             ch_in_word(*src_ptr, word, word_size) == FALSE) {
             ++src_ptr;
         }
         char *dest_ptr = src_ptr + word_size - 1;
-        while (*dest_ptr != '~') {
+        while (*dest_ptr != TXTE) {
             if (is_empty(*dest_ptr) == TRUE) {
                 ++dest_ptr;
             }
-//            for (int i = 0; i < word_size; ++i) {
-//                check_ch[i] = FALSE;
-//            }
-//            int can_use_ch = FALSE;
             if (ch_in_word(*dest_ptr, word, word_size) == FALSE) {
                 break;
             }
-//            for (int i = 0; i < word_size; ++i) {
-//                if (ch_in_word(*(src_ptr + i), word, word_size) != FALSE && check_ch[i] == FALSE) {
-//                    can_use_ch = TRUE;
-//                    check_ch[i] = TRUE;
-//                }
-//            }
             int seq_size = (int) (dest_ptr - src_ptr) + 1;
             int empty_count = 0;
             for (int i = 0; i < seq_size; ++i) {
@@ -244,9 +220,8 @@ int anagram_seq(char *word, int word_size, char *text, int text_size) {
             if (is_minimal(src_ptr, seq_size) == TRUE &&
                 (seq_size - empty_count) == word_size &&
                 is_anagram(word, word_size, src_ptr, seq_size) == TRUE) {
-//                all_checked(check_ch, word_size) == TRUE) {
                 if (print_ang_size > 0) {
-                    print_ang[print_ang_size] = '~';
+                    print_ang[print_ang_size] = TXTE;
                     ++print_ang_size;
                 }
                 strncpy((print_ang + print_ang_size), src_ptr, seq_size);
