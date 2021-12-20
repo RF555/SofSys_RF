@@ -68,5 +68,5 @@ dkms.conf
 #Ex3 file
 
 
-# *.txt
+*.txt
 stringProg
