@@ -34,7 +34,7 @@ int gematria_val(char latter) {
 }
 
 int gematria_seq(char *word, int word_size, char *text, int text_size) {
-    char print_gem[TXT];
+    char print_gem[TXT]={0};
     int print_gem_size = 0;
     char *src_ptr = text;
     int word_value = 0;
@@ -106,7 +106,7 @@ int is_atb(char *atb_ptr, int atb_size, char *seq_ptr, int seq_size) {
 }
 
 int atbash_seq(char *word, int word_size, char *text, int text_size) {
-    char print_atb[TXT];
+    char print_atb[TXT]={0};
     int print_atb_size = 0;
     char *src_ptr = text;
     char word_atb[word_size];
