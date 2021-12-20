@@ -6,7 +6,7 @@ int main() {
 //    char input[] = "abcd\n"
 //                   "a-bc,dbca-zwxyzabzyxw0dcba~";
 //    int total_size = sizeof(input);
-    char input[TXT];
+    char input[TXT]={0};
     int total_size = 0;
     while (input[total_size - 1] != '~') {
         char temp;
@@ -16,7 +16,7 @@ int main() {
     }
     char *word_ptr = input;
     int word_size = 0;
-    char word[WORD];
+    char word[WORD]={0};
     while ((*(word_ptr + word_size) != WE1) && (*(word_ptr + word_size) != WE2) && (*(word_ptr + word_size) != WE3)) {
         word[word_size] = input[word_size];
         ++word_size;
