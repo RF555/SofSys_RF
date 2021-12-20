@@ -72,7 +72,8 @@ int gematria_seq(char *word, int word_size, char *text, int text_size) {
         }
         ++src_ptr;
     }
-    print_gem[print_gem_size] = '\0';
+    print_gem[print_gem_size] = '\n';
+    print_gem[print_gem_size+1] = '\0';
     printf("%s%s", GEM, print_gem);
     return 0;
 }
@@ -150,7 +151,8 @@ int atbash_seq(char *word, int word_size, char *text, int text_size) {
         }
         ++src_ptr;
     }
-    print_atb[print_atb_size] = '\0';
+    print_atb[print_atb_size] = '\n';
+    print_atb[print_atb_size+1] = '\0';
     printf("%s%s", ATB, print_atb);
     return 0;
 }
@@ -235,7 +237,8 @@ int anagram_seq(char *word, int word_size, char *text, int text_size) {
         }
         ++src_ptr;
     }
-    print_ang[print_ang_size] = '\0';
+    print_ang[print_ang_size] = '\n';
+    print_ang[print_ang_size+1] = '\0';
     printf("%s%s", ANG, print_ang);
     return 0;
 }
