@@ -237,8 +237,8 @@ int anagram_seq(char *word, int word_size, char *text, int text_size) {
         }
         ++src_ptr;
     }
-    print_ang[print_ang_size] = '\n';
-    print_ang[print_ang_size+1] = '\0';
+    // print_ang[print_ang_size] = '\n';
+    print_ang[print_ang_size] = '\0';
     printf("%s%s", ANG, print_ang);
     return 0;
 }
