@@ -1,31 +1,62 @@
 #include <stdio.h>
-#include "my_seq.h"
-#include "string.h"
+#include <math.h>
+#include "NumClass.h"
 
-int main() {
-//    char input[] = "abcd\n"
-//                   "a-bc,dbca-zwxyzabzyxw0dcba~";
-//    int total_size = sizeof(input);
-    char input[TXT]={0};
-    int total_size = 0;
-    while (input[total_size - 1] != '~') {
-        char temp;
-        scanf("%c", &temp);
-        input[total_size] = temp;
-        ++total_size;
+
+int main(){
+    int x,y=0;
+    scanf("%d",&x);
+    scanf("%d",&y);
+    int min,max;
+    if(x<=y){
+        min=x;
+        max=y;
+    }else{
+        min=y;
+        max=x;
     }
-    char *word_ptr = input;
-    int word_size = 0;
-    char word[WORD]={0};
-    while ((*(word_ptr + word_size) != WE1) && (*(word_ptr + word_size) != WE2) && (*(word_ptr + word_size) != WE3)) {
-        word[word_size] = input[word_size];
-        ++word_size;
+    int primes[max-min];
+    int armstrongs[max-min];
+    int strongs[max-min];
+    int palindromes[max-min];
+    int iPrime=0;
+    int iArmstrong=0;
+    int iStrong=0;
+    int iPalindrome=0;
+    for (int i = min; i <= max; i++){
+        if(isPrime(i)==1){
+            primes[iPrime]=i;
+            iPrime++;
+        }
+        if(isArmstrong(i)==1){
+            armstrongs[iArmstrong]=i;
+            iArmstrong++;
+        }
+        if(isStrong(i)==1){
+            strongs[iStrong]=i;
+            iStrong++;
+        }
+        if(isPalindrome(i)==1){
+            palindromes[iPalindrome]=i;
+            iPalindrome++;
+        }
     }
-    char *text_ptr = word_ptr + word_size;
-    gematria_seq(word, word_size, text_ptr, (total_size - word_size));
+    printf("The Armstrong numbers are:");
+    for(int i=0;i<iArmstrong;i++){
+        printf(" %d", armstrongs[i]);
+    }
+    printf("\nThe Palindromes are:");
+    for(int i=0;i<iPalindrome;i++){
+        printf(" %d", palindromes[i]);
+    }
+    printf("\nThe Prime numbers are:");
+    for(int i=0;i<iPrime;i++){
+        printf(" %d", primes[i]);
+    }
+    printf("\nThe Strong numbers are:");
+    for(int i=0;i<iStrong;i++){
+        printf(" %d", strongs[i]);
+    }
     printf("\n");
-    atbash_seq(word, word_size, text_ptr, (total_size - word_size));
-    printf("\n");
-    anagram_seq(word, word_size, text_ptr, (total_size - word_size));
     return 0;
 }
