@@ -1,27 +1,53 @@
-CC = gcc
-FLAGS = -Wall -g
-MY_DYNAMIC_LIB = libseq.so
-AR = ar
-OBJECT_LIB = my_seq.o
-OBJECT_MAIN = main.o
+CC=gcc
+AR=ar
+OBJECT_MAIN=main.o
+OBJECTS_LIB=mylib.o
+FLAGS= -Wall -g
 
-all: stringProg
+all: maindloop maindrec mains loopd recursived recursives loops
 
-# # DYNAMIC linking
-stringProg: $(OBJECT_MAIN) $(MY_DYNAMIC_LIB)
-	$(CC) $(FLAGS) -o stringProg $(OBJECT_MAIN) ./$(MY_DYNAMIC_LIB) -lm
+maindloop: main.o libclassloops.so
+	$(CC) $(FLAGS) -o maindloop main.o ./libclassloops.so -lm
 
-# DYNAMIC library
-$(MY_DYNAMIC_LIB): $(OBJECT_LIB)
-	$(CC) -shared -o $(MY_DYNAMIC_LIB) $(OBJECT_LIB)
+maindrec: main.o libclassrec.so
+	$(CC) $(FLAGS) -o maindrec main.o ./libclassrec.so -lm
 
-$(OBJECT_LIB): my_seq.c my_seq.h
-	$(CC) $(FLAGS) -c my_seq.c
+mains: main.o libclassrec.a
+	$(CC) $(FLAGS) -o mains main.o libclassrec.a -lm
 
-$(OBJECT_MAIN): my_seq.c my_seq.h
+loopd: libclassloops.so
+
+loops: libclassloops.a
+
+recursived: libclassrec.so
+
+recursives: libclassrec.a
+
+libclassrec.a: basicClassification.o advancedClassificationRecursion.o
+	$(AR) -rcs libclassrec.a -o basicClassification.o advancedClassificationRecursion.o
+
+libclassrec.so: basicClassification.o advancedClassificationRecursion.o
+	$(CC) -shared -o libclassrec.so basicClassification.o advancedClassificationRecursion.o
+
+libclassloops.a: basicClassification.o advancedClassificationLoop.o
+	$(AR) -rcs  -o libclassloops.a basicClassification.o advancedClassificationLoop.o
+
+libclassloops.so: basicClassification.o advancedClassificationLoop.o
+	$(CC) -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o
+
+advancedClassificationLoop.o: advancedClassificationLoop.c NumClass.h
+	$(CC) $(FLAGS) -c advancedClassificationLoop.c
+
+advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
+		$(CC) $(FLAGS) -c advancedClassificationRecursion.c
+
+basicClassification.o: basicClassification.c NumClass.h 
+	$(CC) $(FLAGS) -c basicClassification.c
+
+main.o: main.c NumClass.h
 	$(CC) $(FLAGS) -c main.c
 
-.PHONY: clean
+.PHONY: clean all
+
 clean:
-#	-${RM} ${MY_DYNAMIC_LIB} ${OBJS} $(SRCS:.c=.d)
-	rm -f *.o *.a *.so stringProg $(MY_DYNAMIC_LIB) $(MY_STATIC_LIB)
+	rm -f *.o *.a *.so maindloop maindrec mains loopd recursived recursives loops *.txt
